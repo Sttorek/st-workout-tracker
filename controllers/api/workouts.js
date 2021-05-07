@@ -1,22 +1,40 @@
-const router = require('express').Router();
-const Workout = require('../../models/workoutModel.js');
+const router = require("express").Router();
+const Workout = require("../../models/workoutModel.js");
+
+
+router.get("/", (req, res) => {
+    // console.log(req.body)
+    Workout.find()
+      .then((workout) => {
+        res.json(workout);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.json(err);
+      });
+  });
+
+
+
+
+
+
+
+
+
+
 
 // Post route to add exercise
-router.post('/', async (req, res) => {
-    console.log(req.body)
-    await Workout.create({ 
-        day: Date.now,
-        name: req.body.name,
-        type: req.body.type,
-        weight: req.body.weight,
-        sets: req.body.sets,
-        reps: req.body.reps,
-        duration: req.body.duration
-    }, 
-    function (err) {
-        if (err) return (err);
-      });
+router.post("/", (req, res) => {
+  // console.log(req.body)
+  Workout.create()
+    .then((workout) => {
+      res.json(workout);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.json(err);
+    });
 });
-
 
 module.exports = router;
