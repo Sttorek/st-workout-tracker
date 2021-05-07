@@ -22,7 +22,7 @@ To install dependencies, you must run npm i in your terminal.
 
 ## Usage
 
-[Check it out on Heroku!]()
+[Check it out on Heroku!](https://pure-headland-84667.herokuapp.com/)
 
 ## Questions
 
