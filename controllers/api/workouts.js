@@ -1,20 +1,22 @@
 const router = require('express').Router();
-//! require models here
-// const { Tenant, Property } = require('../models');
+const Workout = require('../../models/workoutModel.js');
+
+// Post route to add exercise
+router.post('/', async (req, res) => {
+    console.log(req.body)
+    await Workout.create({ 
+        day: Date.now,
+        name: req.body.name,
+        type: req.body.type,
+        weight: req.body.weight,
+        sets: req.body.sets,
+        reps: req.body.reps,
+        duration: req.body.duration
+    }, 
+    function (err) {
+        if (err) return (err);
+      });
+});
 
 
-// router.get('/', async (req, res) => {
-//     const tenantData = await Tenant.findAll({
-//         include: [
-//           {
-//             model: Property,
-//             attributes: ['address', 'leaseEnd'],
-//           },
-//         ],
-//       }).catch((err) => { 
-//         res.json(err);
-//       });
-//         const tenants = tenantData.map((tenants) => tenants.get({ plain: true }));
-//         // console.log("This is the right data", tenants);
-//          res.render('all_tenants', {tenants});
-// });
+module.exports = router;
